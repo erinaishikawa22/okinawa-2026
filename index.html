@@ -139,40 +139,9 @@ a{color:var(--sea);font-weight:700;text-decoration-thickness:1px;text-underline-
 .btn{display:inline-block;border:1.5px solid var(--sea);color:var(--sea);background:var(--card);border-radius:999px;padding:3px 14px;font:inherit;font-size:13px;font-weight:700;text-decoration:none;cursor:pointer}
 .small{font-size:12.5px;color:var(--sub)}
 nav.tabs{position:fixed;left:0;right:0;bottom:0;background:color-mix(in srgb,var(--card) 94%,transparent);backdrop-filter:blur(6px);border-top:1.5px dotted var(--line2);padding-bottom:env(safe-area-inset-bottom,0px);padding-left:env(safe-area-inset-left,0px);padding-right:env(safe-area-inset-right,0px);z-index:20}
-nav.tabs .in{max-width:640px;margin:0 auto;display:grid;grid-template-columns:repeat(3,1fr)}
+nav.tabs .in{max-width:640px;margin:0 auto;display:grid;grid-template-columns:repeat(2,1fr)}
 
-/* アルバム */
-.post{display:flex;flex-direction:column;gap:10px}
-.post .f{display:flex;gap:8px;flex-wrap:wrap}
-.post select,.post input[type=text],.diary textarea{font:inherit;font-size:15px;color:var(--ink);background:var(--bg);border:1.5px solid var(--line);border-radius:10px;padding:8px 10px;min-width:0}
-.post select{flex:0 0 auto}.post input[type=text]{flex:1 1 160px}
-.pick{display:flex;align-items:center;justify-content:center;gap:8px;background:var(--deep);color:#fff;border:0;border-radius:999px;padding:12px;font:inherit;font-weight:700;cursor:pointer}
-:root:not([data-theme="light"]) .pick{color:#fff}
-@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .pick{color:#161e2e}}
-:root[data-theme="dark"] .pick{color:#161e2e}
-.pick[disabled]{opacity:.55;cursor:wait}
 .note{font-size:13.5px;color:var(--sub);margin:0}
-.albday{display:flex;flex-direction:column;gap:10px}
-.albday .dayhead{padding-right:0}
-.diary p{margin:0;white-space:pre-wrap}
-.diary .empty{color:var(--sub);font-size:14px}
-.diary textarea{width:100%;min-height:96px;resize:vertical}
-.diary .acts{display:flex;gap:8px;justify-content:flex-end;margin-top:8px}
-.linkbtn{background:none;border:0;color:var(--sea);font:inherit;font-size:13.5px;font-weight:700;cursor:pointer;padding:2px 0}
-.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
-.ph{position:relative;aspect-ratio:1;max-width:100%;border:0;padding:5px 5px 14px;background:#fff;border-radius:2px;box-shadow:0 2px 6px rgba(40,60,100,.18);cursor:pointer}
-.ph:nth-child(3n+1){transform:rotate(-2deg)}.ph:nth-child(3n+2){transform:rotate(1.5deg)}
-.ph img{width:100%;height:100%;object-fit:cover;display:block}
-.ph .by{position:absolute;left:8px;bottom:18px;width:22px;height:22px;border-radius:50%;border:1.5px solid #fff}
-.lb{position:fixed;inset:0;background:rgba(10,14,24,.92);z-index:40;display:flex;flex-direction:column;padding:calc(12px + env(safe-area-inset-top,0px)) max(12px,env(safe-area-inset-right,0px)) calc(12px + env(safe-area-inset-bottom,0px)) max(12px,env(safe-area-inset-left,0px));color:#fff}
-.lb .im{flex:1;min-height:0;display:flex;align-items:center;justify-content:center}
-.lb img{max-width:100%;max-height:100%;object-fit:contain;border-radius:4px}
-.lb .cap{padding-top:10px;font-size:14px;display:flex;justify-content:space-between;gap:10px;align-items:flex-end}
-.lb .cap .who{opacity:.75;font-size:12.5px}
-.lb button{background:rgba(255,255,255,.14);color:#fff;border:0;border-radius:999px;padding:6px 14px;font:inherit;font-size:13.5px;cursor:pointer}
-.lb .top{display:flex;justify-content:space-between;gap:8px;padding-bottom:8px}
-.cover{display:flex;align-items:center;gap:12px}
-.cover .n{font-family:var(--f-en);font-weight:700;font-size:32px;color:var(--deep);font-variant-numeric:tabular-nums;line-height:1}
 .tab{background:none;border:0;font:inherit;color:var(--sub);padding:8px 0 10px;display:flex;flex-direction:column;align-items:center;gap:2px;font-size:11.5px;cursor:pointer}
 .tab svg{width:24px;height:24px;stroke:currentColor;fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
 .tab[aria-current="page"]{color:var(--deep);font-weight:700}
@@ -183,14 +152,12 @@ nav.tabs .in{max-width:640px;margin:0 auto;display:grid;grid-template-columns:re
   --d1:#6d93c9; --d2:#4f97ab; --d3:#7f83c8; --d4:#4f6f9f; color:var(--ink); color-scheme:light}
   :root:not([data-theme="light"]) .card .pin{color:#fff}
   :root:not([data-theme="light"]) .card .dmap .num{fill:#fff}
-  :root:not([data-theme="light"]) .card .pick{color:#fff}
 }
 :root[data-theme="dark"] .card{--bg:#eef4fb; --card:#f7faff; --ink:#34425c; --sub:#5f6d84; --line:#d5e1ef; --line2:#bcd0e8;
   --blue:#7f9fd0; --deep:#4f6f9f; --pale:#dce8f6; --tape:#b9cfeb; --sea:#3f78ad; --red:#c9605a; --warn:#a66a2a;
   --d1:#6d93c9; --d2:#4f97ab; --d3:#7f83c8; --d4:#4f6f9f; color:var(--ink); color-scheme:light}
 :root[data-theme="dark"] .card .pin{color:#fff}
 :root[data-theme="dark"] .card .dmap .num{fill:#fff}
-:root[data-theme="dark"] .card .pick{color:#fff}
 @media (prefers-reduced-motion:no-preference){.view{animation:fade .18s ease-out}@keyframes fade{from{opacity:.4}to{opacity:1}}}
 </style>
 </head>
@@ -262,22 +229,11 @@ nav.tabs .in{max-width:640px;margin:0 auto;display:grid;grid-template-columns:re
 
   <!-- 行き先 -->
 
-  <!-- アルバム -->
-  <section class="view" id="v-album" hidden>
-    <h2>Album<small>旅のアルバム</small></h2>
-    <div class="card post">
-      <h3>写真はGoogleフォトの共有アルバムへ</h3>
-      <p class="note">撮った写真は、みんなでこのアルバムに入れていきましょう。開くと見られて、「＋」から写真を追加できます。</p>
-      <a class="pick" style="text-decoration:none" id="album-link" href="#" target="_blank" rel="noopener">共有アルバムを開く</a>
-      <p class="note" id="album-wait" hidden>アルバムのリンクは準備中です。</p>
-    </div>
-  </section>
 </main>
 
 <nav class="tabs" aria-label="メニュー"><div class="in">
   <button class="tab" data-v="plan" aria-current="page"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/></svg>日程</button>
   <button class="tab" data-v="book"><svg viewBox="0 0 24 24"><path d="M4 7h16v4a2 2 0 0 0 0 4v4H4v-4a2 2 0 0 0 0-4z"/><path d="M14 7v12" stroke-dasharray="2 2"/></svg>予約</button>
-  <button class="tab" data-v="album"><svg viewBox="0 0 24 24"><rect x="3" y="6" width="18" height="14" rx="2"/><path d="M8 6l1.5-2h5L16 6"/><circle cx="12" cy="13" r="3.5"/></svg>アルバム</button>
 </div></nav>
 
 <script>
@@ -472,13 +428,9 @@ function show(v){
   window.scrollTo(0,0);
 }
 tabs.forEach(t=>t.onclick=()=>{ show(t.dataset.v); if(location.hash!=="#"+t.dataset.v) location.hash=t.dataset.v });
-const fromHash=()=>{ const h=location.hash.slice(1); show(["plan","book","album"].includes(h)?h:"plan") };
+const fromHash=()=>{ const h=location.hash.slice(1); show(["plan","book"].includes(h)?h:"plan") };
 addEventListener("hashchange",fromHash); fromHash();
 
-/* ===== アルバム（Googleフォトの共有アルバム） ===== */
-const ALBUM_URL = "";
-(()=>{ const a=document.getElementById("album-link");
-  if(ALBUM_URL){ a.href=ALBUM_URL } else { a.hidden=true; document.getElementById("album-wait").hidden=false } })();
 </script>
 
 </body>
