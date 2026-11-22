@@ -1,0 +1,485 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="robots" content="noindex,nofollow">
+<style>*,*::before,*::after{box-sizing:border-box}[hidden]{display:none!important}body{margin:0}</style>
+<link rel="icon" href="img/hibiscus.png">
+<link rel="apple-touch-icon" href="img/hibiscus.png">
+<title>沖縄 2026→2027</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@400;500;700&family=Zen+Old+Mincho:wght@600&family=Quicksand:wght@600;700&display=swap">
+<style>
+/* Layout: phone-first single column, fixed bottom tab bar. Look: a hand-made "trip note" in pale sky blue — watercolour clouds, washi-tape labels, round time stamps on a dotted line, wavy dividers, polaroid-framed illustrations. */
+:root{
+  --bg:#eef4fb; --card:#ffffff; --ink:#34425c; --sub:#66748b; --line:#d5e1ef; --line2:#bcd0e8;
+  --blue:#7f9fd0; --deep:#4f6f9f; --pale:#dce8f6; --tape:#b9cfeb; --cloud:rgba(170,198,232,.45);
+  --indigo:#4f6f9f; --sun:#f2c46b; --red:#d9736b; --sea:#4f86b8; --warn-bg:#fdf3e4; --warn:#a66a2a;
+  --d1:#6d93c9; --d2:#5fa3b6; --d3:#8b8fd0; --d4:#4f6f9f;
+  --f-head:"Zen Maru Gothic","Hiragino Maru Gothic ProN",sans-serif;
+  --f-body:"Zen Maru Gothic","Hiragino Maru Gothic ProN","Noto Sans JP",sans-serif;
+  --f-title:"Zen Old Mincho","Hiragino Mincho ProN","Yu Mincho",serif;
+  --f-en:"Quicksand","Zen Maru Gothic",sans-serif;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#161e2e; --card:#1f2a3f; --ink:#e4ebf6; --sub:#a2b0c6; --line:#2e3b55; --line2:#3d4d6c;
+  --blue:#9dbbe6; --deep:#b9cff0; --pale:#283652; --tape:#3b5079; --cloud:rgba(90,120,170,.22);
+  --indigo:#b9cff0; --sun:#f0c25a; --red:#ec8f86; --sea:#8fbbe8; --warn-bg:#3a2e1e; --warn:#f3b27a;
+  --d1:#8fb3e6; --d2:#7cc3d3; --d3:#aeb2ef; --d4:#b9cff0; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#161e2e; --card:#1f2a3f; --ink:#e4ebf6; --sub:#a2b0c6; --line:#2e3b55; --line2:#3d4d6c;
+  --blue:#9dbbe6; --deep:#b9cff0; --pale:#283652; --tape:#3b5079; --cloud:rgba(90,120,170,.22);
+  --indigo:#b9cff0; --sun:#f0c25a; --red:#ec8f86; --sea:#8fbbe8; --warn-bg:#3a2e1e; --warn:#f3b27a;
+  --d1:#8fb3e6; --d2:#7cc3d3; --d3:#aeb2ef; --d4:#b9cff0; color-scheme:dark}
+*{box-sizing:border-box}
+html,body{background:var(--bg);color:var(--ink)}
+body{font-family:var(--f-body);font-weight:500;font-size:15px;line-height:1.7;letter-spacing:.02em;padding-bottom:calc(76px + env(safe-area-inset-bottom,0px));
+  background-image:radial-gradient(60% 40% at 0% 0%,var(--cloud),transparent 70%),radial-gradient(50% 30% at 100% 18%,var(--cloud),transparent 70%),radial-gradient(70% 35% at 10% 100%,var(--cloud),transparent 70%);background-attachment:fixed}
+.wrap{max-width:640px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+
+/* 表紙 */
+header.top{padding-block:calc(22px + env(safe-area-inset-top,0px)) 8px;color:var(--ink)}
+header.top .wrap{position:relative}
+.kicker{font-size:12px;color:var(--sub);margin:0}
+.en{font-family:var(--f-en);font-weight:700;letter-spacing:.14em;color:var(--blue);text-transform:uppercase}
+header.top .en{font-size:15px;margin:2px 0 0}
+header.top h1{font-family:var(--f-title);font-weight:600;font-size:40px;line-height:1.15;margin:2px 0 10px;letter-spacing:.04em}
+.ribbon{position:relative;display:inline-block;background:var(--tape);color:var(--ink);font-weight:700;font-size:14px;padding:5px 22px;clip-path:polygon(0 0,100% 0,96% 50%,100% 100%,0 100%,4% 50%)}
+header.top p.sub{margin:10px 0 0;font-size:13px;color:var(--sub)}
+.doodle{position:absolute;color:var(--blue);pointer-events:none}
+.doodle.plane{right:104px;top:-18px;width:84px}
+.doodle.spark{left:150px;top:8px;width:28px}
+.polaroid{background:none;padding:0}
+header.top .art{position:absolute;right:14px;top:14px;width:78px;transform:rotate(8deg)}
+header.top .art img{width:100%;height:auto;display:block}
+.bubble{position:relative;display:inline-block;margin-top:14px;background:var(--card);border:1.5px solid var(--ink);border-radius:999px;padding:3px 14px;font-size:13px;font-weight:700}
+.bubble::after{content:"";position:absolute;left:22px;bottom:-6px;width:10px;height:10px;background:var(--card);border-right:1.5px solid var(--ink);border-bottom:1.5px solid var(--ink);transform:rotate(45deg)}
+
+main{padding-block:8px 24px}
+section.view{display:flex;flex-direction:column;gap:16px}
+h2{font-family:var(--f-head);font-size:19px;margin:6px 0 0;text-wrap:balance}
+h3{font-family:var(--f-head);font-size:16px;margin:0}
+.lead{color:var(--sub);margin:0;font-size:14px}
+.card{background:var(--card);border-radius:16px;padding:16px;box-shadow:0 1px 0 var(--line),0 6px 18px rgba(80,110,160,.08)}
+.alert{background:var(--warn-bg);color:var(--ink);border-radius:16px;padding:12px 14px;border:1.5px dashed color-mix(in srgb,var(--warn) 45%,transparent)}
+.alert b{color:var(--warn)}
+.view > h2{font-family:var(--f-en);font-weight:700;letter-spacing:.1em;color:var(--blue);font-size:22px}
+.view > h2 small{font-family:var(--f-body);letter-spacing:.02em;color:var(--ink);font-size:13px;margin-left:8px;font-weight:500}
+
+/* 日付タブ（マスキングテープ） */
+.chips{display:flex;gap:6px;overflow-x:auto;padding:4px 2px 6px;scrollbar-width:none}
+.chip{flex:0 0 auto;border:0;background:color-mix(in srgb,var(--tape) 55%,transparent);color:var(--ink);padding:6px 16px 5px;font:inherit;font-size:13px;line-height:1.25;cursor:pointer;clip-path:polygon(0 0,100% 0,96% 25%,100% 50%,96% 75%,100% 100%,0 100%,4% 75%,0 50%,4% 25%);text-align:center}
+.chip b{display:block;font-family:var(--f-en);letter-spacing:.12em;font-size:12px;color:var(--deep)}
+.chip[aria-pressed="true"]{background:var(--dc);color:#fff;transform:rotate(-2deg)}
+.chip[aria-pressed="true"] b{color:#fff}
+:root:not([data-theme="light"]) .chip[aria-pressed="true"]{color:#fff}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .chip[aria-pressed="true"],:root:not([data-theme="light"]) .chip[aria-pressed="true"] b{color:#161e2e}}
+:root[data-theme="dark"] .chip[aria-pressed="true"],:root[data-theme="dark"] .chip[aria-pressed="true"] b{color:#161e2e}
+.chip:focus-visible,.tab:focus-visible,a:focus-visible,input:focus-visible{outline:2px solid var(--sea);outline-offset:2px}
+
+/* 日の見出し */
+.dcard{position:relative}
+.dayhead{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap;padding-right:84px}
+.dayhead .dno{font-family:var(--f-en);font-weight:700;font-size:30px;letter-spacing:.06em;color:var(--dc);line-height:1}
+.dayhead h2{margin:0;font-size:15px;font-weight:700}
+.dayhead .date{width:100%;font-size:12.5px;color:var(--sub);margin-top:2px}
+.dcard .dart{position:absolute;top:14px;right:14px;width:66px;transform:rotate(-4deg)}
+.dcard .dart img{width:100%;height:52px;object-fit:contain;display:block}
+
+/* タイムライン */
+.tl{list-style:none;margin:10px 0 0;padding:0;position:relative}
+.tl::before{content:"";position:absolute;left:30px;top:14px;bottom:14px;border-left:2px dotted var(--line2)}
+.tl li{position:relative;display:grid;grid-template-columns:60px 1fr;gap:12px;padding:12px 0 14px}
+.tl li+li::before{content:"";position:absolute;left:72px;right:0;top:-3px;height:6px;background:var(--line2);
+  -webkit-mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='18' height='6'%3E%3Cpath d='M0 3 Q4.5 0 9 3 T18 3' fill='none' stroke='black' stroke-width='1.4'/%3E%3C/svg%3E") repeat-x;
+          mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='18' height='6'%3E%3Cpath d='M0 3 Q4.5 0 9 3 T18 3' fill='none' stroke='black' stroke-width='1.4'/%3E%3C/svg%3E") repeat-x}
+.tl .t{position:relative;z-index:1;align-self:start;width:60px;min-height:60px;border-radius:50%;background:var(--pale);color:var(--deep);display:flex;align-items:center;justify-content:center;text-align:center;font-family:var(--f-en);font-weight:700;font-size:12.5px;line-height:1.2;padding:4px;font-variant-numeric:tabular-nums;box-shadow:0 0 0 3px var(--card)}
+.tl .mv{font-size:12px;color:var(--sub);margin:0 0 4px}
+.tl .b{min-width:0;padding-top:2px}
+.tl .b .w{font-weight:700}
+.tl .b .n{color:var(--sub);font-size:13.5px}
+.tl .iart{float:right;width:58px;height:50px;object-fit:contain;margin:0 0 4px 8px}
+
+/* 地図 */
+.dmap{position:relative;margin-top:18px;display:flex;flex-direction:column;gap:8px}
+.dmap::before{content:"";position:absolute;left:50%;top:-8px;width:84px;height:18px;margin-left:-42px;background:color-mix(in srgb,var(--tape) 80%,transparent);transform:rotate(-3deg);z-index:1}
+.dmap svg{width:100%;height:auto;display:block;background:color-mix(in srgb,var(--blue) 14%,var(--card));border-radius:12px}
+.dmap svg.noland{background:color-mix(in srgb,var(--line) 45%,var(--card))}
+.dmap .land{fill:var(--card);stroke:var(--line2);stroke-width:1.2}
+.dmap .rt{fill:none;stroke:var(--dc);stroke-width:2.2;stroke-dasharray:5 4;stroke-linecap:round}
+.dmap .pt{fill:var(--dc);stroke:var(--card);stroke-width:1.5}
+.dmap .num{fill:#fff;font-weight:700;font-family:var(--f-en);text-anchor:middle;dominant-baseline:central}
+.dmap .lbl{fill:var(--ink);font-family:var(--f-body);font-weight:700;paint-order:stroke;stroke:var(--card);stroke-width:3px;stroke-linejoin:round}
+.dmap .foot{display:flex;justify-content:space-between;align-items:center;gap:8px;flex-wrap:wrap}
+
+/* この日にできそうなこと（切手風） */
+.ideas{margin-top:18px;background:var(--pale);border-radius:6px;padding:16px 18px;outline:2px dashed var(--card);outline-offset:-8px;overflow:hidden}
+.ideas h3{margin:0 0 6px;font-size:14.5px;text-align:center}
+.ideas ul{margin:0;padding-left:1.2em;font-size:14px}
+.ideas li{padding:2px 0}
+.ideas li::marker{color:var(--blue)}
+.ideas .iart{float:right;width:44px;height:64px;object-fit:contain;margin-left:8px}
+
+.tag{display:inline-block;font-size:11.5px;font-weight:700;padding:0 8px;border-radius:999px;margin-right:4px;vertical-align:1px;background:transparent;border:1.5px solid var(--dc);color:var(--ink)}
+a{color:var(--sea);font-weight:700;text-decoration-thickness:1px;text-underline-offset:3px}
+.rows{display:flex;flex-direction:column}
+.row{display:grid;grid-template-columns:88px 1fr;gap:10px;padding:10px 0;border-bottom:1.5px dotted var(--line2)}
+.row:last-child{border-bottom:0}
+.row .k{color:var(--sub);font-size:13px}
+.row .v{min-width:0}
+.card > h3:first-child{display:inline-block;background:var(--tape);padding:2px 16px;margin:-2px 0 8px -4px;transform:rotate(-1.5deg);font-size:14.5px;clip-path:polygon(0 0,100% 0,97% 30%,100% 55%,97% 80%,100% 100%,0 100%,3% 75%,0 50%,3% 25%)}
+.status{display:inline-block;font-size:11.5px;font-weight:700;padding:0 8px;border-radius:999px;margin-left:4px}
+.ok{background:color-mix(in srgb,var(--sea) 18%,transparent);color:var(--sea)}
+.ng{background:color-mix(in srgb,var(--red) 18%,transparent);color:var(--red)}
+.tbd{background:color-mix(in srgb,var(--sun) 25%,transparent);color:var(--warn)}
+.pin{display:inline-flex;align-items:center;justify-content:center;width:20px;height:20px;border-radius:50%;background:var(--dc);color:#fff;font-family:var(--f-en);font-size:11.5px;font-weight:700;margin-right:6px;vertical-align:2px;line-height:1}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .pin{color:#161e2e}:root:not([data-theme="light"]) .dmap .num{fill:#161e2e}}
+:root[data-theme="dark"] .pin{color:#161e2e}
+:root[data-theme="dark"] .dmap .num{fill:#161e2e}
+.btn{display:inline-block;border:1.5px solid var(--sea);color:var(--sea);background:var(--card);border-radius:999px;padding:3px 14px;font:inherit;font-size:13px;font-weight:700;text-decoration:none;cursor:pointer}
+.small{font-size:12.5px;color:var(--sub)}
+nav.tabs{position:fixed;left:0;right:0;bottom:0;background:color-mix(in srgb,var(--card) 94%,transparent);backdrop-filter:blur(6px);border-top:1.5px dotted var(--line2);padding-bottom:env(safe-area-inset-bottom,0px);padding-left:env(safe-area-inset-left,0px);padding-right:env(safe-area-inset-right,0px);z-index:20}
+nav.tabs .in{max-width:640px;margin:0 auto;display:grid;grid-template-columns:repeat(3,1fr)}
+
+/* アルバム */
+.post{display:flex;flex-direction:column;gap:10px}
+.post .f{display:flex;gap:8px;flex-wrap:wrap}
+.post select,.post input[type=text],.diary textarea{font:inherit;font-size:15px;color:var(--ink);background:var(--bg);border:1.5px solid var(--line);border-radius:10px;padding:8px 10px;min-width:0}
+.post select{flex:0 0 auto}.post input[type=text]{flex:1 1 160px}
+.pick{display:flex;align-items:center;justify-content:center;gap:8px;background:var(--deep);color:#fff;border:0;border-radius:999px;padding:12px;font:inherit;font-weight:700;cursor:pointer}
+:root:not([data-theme="light"]) .pick{color:#fff}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .pick{color:#161e2e}}
+:root[data-theme="dark"] .pick{color:#161e2e}
+.pick[disabled]{opacity:.55;cursor:wait}
+.note{font-size:13.5px;color:var(--sub);margin:0}
+.albday{display:flex;flex-direction:column;gap:10px}
+.albday .dayhead{padding-right:0}
+.diary p{margin:0;white-space:pre-wrap}
+.diary .empty{color:var(--sub);font-size:14px}
+.diary textarea{width:100%;min-height:96px;resize:vertical}
+.diary .acts{display:flex;gap:8px;justify-content:flex-end;margin-top:8px}
+.linkbtn{background:none;border:0;color:var(--sea);font:inherit;font-size:13.5px;font-weight:700;cursor:pointer;padding:2px 0}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.ph{position:relative;aspect-ratio:1;max-width:100%;border:0;padding:5px 5px 14px;background:#fff;border-radius:2px;box-shadow:0 2px 6px rgba(40,60,100,.18);cursor:pointer}
+.ph:nth-child(3n+1){transform:rotate(-2deg)}.ph:nth-child(3n+2){transform:rotate(1.5deg)}
+.ph img{width:100%;height:100%;object-fit:cover;display:block}
+.ph .by{position:absolute;left:8px;bottom:18px;width:22px;height:22px;border-radius:50%;border:1.5px solid #fff}
+.lb{position:fixed;inset:0;background:rgba(10,14,24,.92);z-index:40;display:flex;flex-direction:column;padding:calc(12px + env(safe-area-inset-top,0px)) max(12px,env(safe-area-inset-right,0px)) calc(12px + env(safe-area-inset-bottom,0px)) max(12px,env(safe-area-inset-left,0px));color:#fff}
+.lb .im{flex:1;min-height:0;display:flex;align-items:center;justify-content:center}
+.lb img{max-width:100%;max-height:100%;object-fit:contain;border-radius:4px}
+.lb .cap{padding-top:10px;font-size:14px;display:flex;justify-content:space-between;gap:10px;align-items:flex-end}
+.lb .cap .who{opacity:.75;font-size:12.5px}
+.lb button{background:rgba(255,255,255,.14);color:#fff;border:0;border-radius:999px;padding:6px 14px;font:inherit;font-size:13.5px;cursor:pointer}
+.lb .top{display:flex;justify-content:space-between;gap:8px;padding-bottom:8px}
+.cover{display:flex;align-items:center;gap:12px}
+.cover .n{font-family:var(--f-en);font-weight:700;font-size:32px;color:var(--deep);font-variant-numeric:tabular-nums;line-height:1}
+.tab{background:none;border:0;font:inherit;color:var(--sub);padding:8px 0 10px;display:flex;flex-direction:column;align-items:center;gap:2px;font-size:11.5px;cursor:pointer}
+.tab svg{width:24px;height:24px;stroke:currentColor;fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.tab[aria-current="page"]{color:var(--deep);font-weight:700}
+/* ダーク画面でも、カードの中は明るい紙のままにして読みやすく */
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]) .card{--bg:#eef4fb; --card:#f7faff; --ink:#34425c; --sub:#5f6d84; --line:#d5e1ef; --line2:#bcd0e8;
+  --blue:#7f9fd0; --deep:#4f6f9f; --pale:#dce8f6; --tape:#b9cfeb; --sea:#3f78ad; --red:#c9605a; --warn:#a66a2a;
+  --d1:#6d93c9; --d2:#4f97ab; --d3:#7f83c8; --d4:#4f6f9f; color:var(--ink); color-scheme:light}
+  :root:not([data-theme="light"]) .card .pin{color:#fff}
+  :root:not([data-theme="light"]) .card .dmap .num{fill:#fff}
+  :root:not([data-theme="light"]) .card .pick{color:#fff}
+}
+:root[data-theme="dark"] .card{--bg:#eef4fb; --card:#f7faff; --ink:#34425c; --sub:#5f6d84; --line:#d5e1ef; --line2:#bcd0e8;
+  --blue:#7f9fd0; --deep:#4f6f9f; --pale:#dce8f6; --tape:#b9cfeb; --sea:#3f78ad; --red:#c9605a; --warn:#a66a2a;
+  --d1:#6d93c9; --d2:#4f97ab; --d3:#7f83c8; --d4:#4f6f9f; color:var(--ink); color-scheme:light}
+:root[data-theme="dark"] .card .pin{color:#fff}
+:root[data-theme="dark"] .card .dmap .num{fill:#fff}
+:root[data-theme="dark"] .card .pick{color:#fff}
+@media (prefers-reduced-motion:no-preference){.view{animation:fade .18s ease-out}@keyframes fade{from{opacity:.4}to{opacity:1}}}
+</style>
+</head>
+<body>
+<header class="top">
+  <div class="wrap">
+    <svg class="doodle spark" viewBox="0 0 30 30" aria-hidden="true"><path d="M10 2 L12 9 L19 11 L12 13 L10 20 L8 13 L1 11 L8 9Z M23 17 L24 21 L28 22 L24 23 L23 27 L22 23 L18 22 L22 21Z" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"/></svg>
+    <svg class="doodle plane" viewBox="0 0 92 40" aria-hidden="true"><path d="M2 36 C20 34 34 26 52 20" fill="none" stroke="currentColor" stroke-width="1.3" stroke-dasharray="3 4" stroke-linecap="round"/><path d="M58 18 L86 6 C90 4 92 8 88 10 L62 22 Z M70 13 L64 4 L68 3 L78 10 M68 18 L66 27 L70 27 L76 16" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/></svg>
+    <p class="en">Trip Note</p>
+    <h1>旅のしおり</h1>
+    <span class="ribbon">家族で行く 3泊4日の沖縄旅</span>
+    <p class="sub">12/31（木）〜 1/3（日）</p>
+    <span class="bubble" id="count">あと–日</span>
+    <div class="art polaroid"><img src="img/hibiscus.png" alt=""></div>
+  </div>
+</header>
+
+<main class="wrap">
+  <!-- 日程 -->
+  <section class="view" id="v-plan">
+    <div class="chips" id="daychips" role="group" aria-label="日付を選ぶ"></div>
+    <div id="day"></div>
+  </section>
+
+  <!-- 予約 -->
+  <section class="view" id="v-book" hidden>
+    <h2>Booking<small>予約まとめ</small></h2>
+    <div class="alert"><b>要対応：1/2 那覇のホテルが重複予約</b><br>
+      エグゼクティブフロアに泊まる方針です。ただし、エリナが予約したエグゼクティブ2室は<b>3名＋2名＝5人分で、1人足りません</b>。エグゼクティブをもう1室増やすか、2名の部屋を3名に変えられるかを確認してください。決まったら、ゆうかが予約したスーペリアツイン3部屋をキャンセルします。キャンセル料がいつからかかるかも先に確認してください。</div>
+
+    <div class="card"><h3>✈ 行き 12/31</h3>
+      <div class="rows">
+        <div class="row"><div class="k">高松→那覇</div><div class="v"><b>ANA NH1621</b> 4人 <span class="status ok">予約済み</span><div class="small">高松 11:40 発 → 那覇 13:50 着</div></div></div>
+        <div class="row"><div class="k">羽田→那覇</div><div class="v"><b>JAL 913</b> 2人 <span class="status ok">予約済み</span><div class="small">羽田 10:30 発 → 那覇 13:30 着</div></div></div>
+      </div>
+    </div>
+
+    <div class="card"><h3>🏨 宿泊</h3>
+      <div class="rows">
+        <div class="row"><div class="k">12/31・1/1</div><div class="v"><a href="https://coldioresort.com/condominium/terracegardenmihama" target="_blank" rel="noopener">畳の宿 北谷美浜</a>（6名） <span class="status ok">予約済み</span>
+          <div class="small">北谷町美浜2-5-18・<a href="https://www.google.com/maps/search/?api=1&query=%E7%95%B3%E3%81%AE%E5%AE%BF%20%E5%8C%97%E8%B0%B7%E7%BE%8E%E6%B5%9C" target="_blank" rel="noopener">地図</a><br>
+          チェックイン 15:00〜22:00（無人。タブレットでセルフチェックイン。コードは前日9時に届く）／チェックアウト 12:00<br>
+          駐車場は「1部屋1台」。2台目は近くのコインパーキングに止める</div></div></div>
+        <div class="row"><div class="k">1/2</div><div class="v"><a href="https://www.royalparkhotels.co.jp/ic/naha/" target="_blank" rel="noopener">ザ ロイヤルパークホテル アイコニック 那覇</a> <span class="status ng">重複あり</span>
+          <div class="small">那覇市久茂地1-11-1 琉球銀行本店ビル7F・<a href="https://www.google.com/maps/search/?api=1&query=%E3%82%B6%20%E3%83%AD%E3%82%A4%E3%83%A4%E3%83%AB%E3%83%91%E3%83%BC%E3%82%AF%E3%83%9B%E3%83%86%E3%83%AB%20%E3%82%A2%E3%82%A4%E3%82%B3%E3%83%8B%E3%83%83%E3%82%AF%20%E9%82%A3%E8%A6%87" target="_blank" rel="noopener">地図</a><br>
+          チェックイン 15:00／チェックアウト 11:00<br>
+          エグゼクティブラウンジ（7F）：11:00〜17:00 軽食、17:00〜21:00 カクテルタイム。朝食 7:00〜10:00<br>
+          チェックアウト後も荷物はその日のうちなら預かってもらえる。チェックアウト後にラウンジを使えるかは公式に書かれていない（要確認）<br>
+          駐車場：ビル地下、宿泊者は1泊1,800円。予約不可・先着順（1/2のうちにレンタカーを返すなら不要）<br><br>
+          <b>予約の内訳</b><br>・スーペリアツイン×3部屋（ゆうか予約）<br>・エグゼクティブ 3名1室（エリナ予約）<br>・エグゼクティブ 2名1室（エリナ予約）</div></div></div>
+      </div>
+    </div>
+
+    <div class="card"><h3>🚗 レンタカー</h3>
+      <div class="rows">
+        <div class="row"><div class="k">台数</div><div class="v">2台（日産レンタカー） <span class="status ok">予約済み</span><div class="small">受取：12/31 那覇空港／返却：1/2 那覇市内の予定（返却する店と乗り捨ての可否は要確認）。運転する人：未定</div></div></div>
+      </div>
+    </div>
+
+    <div class="card"><h3>✈ 帰り 1/3</h3>
+      <div class="rows">
+        <div class="row"><div class="k">那覇→高松</div><div class="v"><b>ANA NH1622</b> 3人 <span class="status ok">予約済み</span><div class="small">那覇 14:40 発 → 高松 16:30 着</div></div></div>
+        <div class="row"><div class="k">那覇→羽田</div><div class="v"><b>JAL 988</b> 3人 <span class="status ok">予約済み</span><div class="small">那覇 15:10 発 → 羽田 17:25 着</div></div></div>
+      </div>
+    </div>
+    <p class="small">行きは高松組4人・羽田組2人、帰りは3人ずつに分かれます。行きと帰りで1人、行き先が変わる人がいます。</p>
+  </section>
+
+
+  <!-- 行き先 -->
+
+  <!-- アルバム -->
+  <section class="view" id="v-album" hidden>
+    <h2>Album<small>旅のアルバム</small></h2>
+    <div class="card post">
+      <h3>写真はGoogleフォトの共有アルバムへ</h3>
+      <p class="note">撮った写真は、みんなでこのアルバムに入れていきましょう。開くと見られて、「＋」から写真を追加できます。</p>
+      <a class="pick" style="text-decoration:none" id="album-link" href="#" target="_blank" rel="noopener">共有アルバムを開く</a>
+      <p class="note" id="album-wait" hidden>アルバムのリンクは準備中です。</p>
+    </div>
+  </section>
+</main>
+
+<nav class="tabs" aria-label="メニュー"><div class="in">
+  <button class="tab" data-v="plan" aria-current="page"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/></svg>日程</button>
+  <button class="tab" data-v="book"><svg viewBox="0 0 24 24"><path d="M4 7h16v4a2 2 0 0 0 0 4v4H4v-4a2 2 0 0 0 0-4z"/><path d="M14 7v12" stroke-dasharray="2 2"/></svg>予約</button>
+  <button class="tab" data-v="album"><svg viewBox="0 0 24 24"><rect x="3" y="6" width="18" height="14" rx="2"/><path d="M8 6l1.5-2h5L16 6"/><circle cx="12" cy="13" r="3.5"/></svg>アルバム</button>
+</div></nav>
+
+<script>
+const M = q => "https://www.google.com/maps/search/?api=1&query=" + encodeURIComponent(q);
+const L = (t,u) => `<a href="${u}" target="_blank" rel="noopener">${t}</a>`;
+
+const DAYS = [
+ { id:"d1", label:"12/31", date:"2026-12-31", dow:"木", color:"var(--d1)", title:"到着日・首里城と北谷の大晦日",
+   lead:"那覇に着いたら、生まれ変わった首里城へ。夜は北谷の海辺で2027年を迎えます。",
+   items:[
+    ["13:30頃","那覇空港に到着","羽田組 JAL 913（10:30発→13:30着）／高松組 ANA NH1621（11:40発→13:50着）。そろったらレンタカー2台を受け取る",["air"]],
+    ["15時頃",`${L("首里城公園","https://oki-park.jp/shurijo/")}`,"2026年11月に正殿の復元が完成したばかり。朱色の新しい正殿で迎える、最初のお正月です。<br>12月は有料区域 8:30〜18:00（入場17:30まで）・那覇市首里金城町1-2",["shuri"]],
+    ["18時頃","畳の宿 北谷美浜にチェックイン","2台目の車は近くのコインパーキングへ",["inn"]],
+    ["19時頃",`${L("美浜アメリカンビレッジ","https://www.okinawa-americanvillage.com/")}で夕食`,"観覧車とカラフルな建物が並ぶ海辺の街。A&Wのハンバーガーとルートビアで、沖縄らしい大晦日ディナーを"],
+    ["21:30〜",`<span class="tag">元気な人</span>DJカウントダウンパーティー`,"ダブルツリーbyヒルトン沖縄北谷リゾートのルーフトップバー「43ウェスト」。入場無料（〜24:30）"],
+    ["23:50〜",`<span class="tag">元気な人</span>カウントダウンレーザーショー`,`${L("ヒルトン沖縄北谷リゾート","https://chatan.hiltonjapan.co.jp/restaurants/lp/christmas-newyear")}のテラスで、光のショーとともに2027年へ。宿と同じ美浜地区`]
+   ]},
+ { id:"d2", label:"1/1", date:"2027-01-01", dow:"金", color:"var(--d2)", title:"元日・琉球村と美ら海",
+   lead:"お揃いのTシャツで新年スタート。道の駅かでなに寄ってから北へ走り、琉球村と美ら海水族館へ。夜は花火とお年玉交換です。",
+   items:[
+    ["朝","お揃いのTシャツで朝ごはん","Happy New Year Tシャツを着て、出発前に全員で記念撮影",["inn"]],
+    ["9時半頃",`${L("道の駅かでな","https://michinoeki-kadena.jp/")}`,"4階の展望所から嘉手納基地を一望、戦闘機が見られることも。10時からはALTO COFFEEのコーヒーも。<br>展望所 8:30〜22:00・年中無休",["kadena"]],
+    ["午前",`${L("琉球村","https://www.ryukyumura.co.jp/")}`,"赤瓦の古民家が並ぶ村で、エイサーと三線を間近に。シーサーや紅型作りの体験も。<br>9:30〜17:00（エイサーは10・12・14・16時）",["ryukyu"]],
+    ["昼","ランチ","恩納村の海沿い、シーサイドドライブインが候補"],
+    ["午後",`${L("美ら海水族館","https://churaumi.okinawa/guide/hour/")}`,"ジンベエザメが泳ぐ大水槽「黒潮の海」は圧巻。帰りに備瀬のフクギ並木の散歩も。<br>8:30〜18:30（入館17:30まで）",["chura"]],
+    ["17時半頃","北谷に戻る","",["inn"]],
+    ["20:00〜","北谷の西海岸で打ち上げ花火","元日の夜空に上がる花火を、宿の近くの海辺から"],
+    ["夜","夕食とお年玉（プレゼント）交換","夕食は豚しゃぶ・お肉の店が候補"]
+   ]},
+ { id:"d3", label:"1/2", date:"2027-01-02", dow:"土", color:"var(--d3)", title:"南へ下って那覇のホテルへ",
+   lead:"アメリカンな港川の街を歩いて、おきなわワールドでランチ。戦跡を巡って、16時頃には那覇のホテルへ。あとはゆっくりお正月ステイ。",
+   items:[
+    ["9時頃","北谷の宿をチェックアウト","港川に寄らないなら、ゆっくり10時頃に出発",["inn"]],
+    ["10時頃",`${L("港川ステイツサイドタウン","https://etc-okinawa.net/232/")}`,"<b>元気なら寄り道、疲れていたらスキップ</b>して、おきなわワールドへ直行。<br>1950〜60年代の米軍の外人住宅が並ぶレトロな街。通りにはテキサス、カンザスなどアメリカの州の名前が付いていて、標識の前で記念撮影を。カヌレやタルトのお店をのぞいて、おやつを買っても（45分ほど）",["minato"]],
+    ["11時頃",`${L("おきなわワールド","https://www.gyokusendo.co.jp/okinawaworld/")}`,"30万年かけてできた鍾乳洞「玉泉洞」、迫力のスーパーエイサー、琉球ガラス作り。<br>9:00〜17:30（入園16:00まで）",["world"]],
+    ["12時頃","おきなわワールドでランチ",`${L("沖縄そば自慢 なんと屋","https://www.gyokusendo.co.jp/okinawaworld/foods/")}の沖縄そばか、島野菜のバイキング「ちゅら島」（どちらも11:00〜15:00）。デザートはマンゴーのソフトクリームで`],
+    ["14時頃",`${L("平和祈念公園","https://heiwa-irei-okinawa.jp/")}・${L("ひめゆりの塔","https://www.himeyuri.or.jp/")}`,"海を望む「平和の礎」で、沖縄の歴史に静かに触れる時間",["heiwa","himeyuri"]],
+    ["16時頃",`${L("ザ ロイヤルパークホテル アイコニック 那覇","https://www.royalparkhotels.co.jp/ic/naha/")}にチェックイン`,"エグゼクティブフロアでお正月ステイ。チェックイン後、運転する人がレンタカー2台を返却",["naha"]],
+    ["夕方〜","ホテルでゆっくり",`ラウンジのカクテルタイム（17:00〜21:00）や、お正月の${L("ディナーブッフェ","https://www.royalparkhotels.co.jp/ic/naha/news/4t24b0raq3r5/")}（17:30〜）`],
+    ["夜",`<span class="tag">元気な人</span>国際通りで自由に`,`夜までにぎわう通りでお土産探し。夕食なら${L("ジャッキーステーキハウス","https://www.google.com/maps/search/?api=1&query=%E3%82%B8%E3%83%A3%E3%83%83%E3%82%AD%E3%83%BC%E3%82%B9%E3%83%86%E3%83%BC%E3%82%AD%E3%83%8F%E3%82%A6%E3%82%B9%20%E9%82%A3%E8%A6%87")}（1/2営業）、琉球料理くにんだ、ソーキそば 田舎`]
+   ]},
+ { id:"d4", label:"1/3", date:"2027-01-03", dow:"日", color:"var(--d4)", title:"最終日・やちむんとお土産",
+   lead:"朝はホテルでゆっくり。元気な人は壺屋へ。お昼すぎに空港へ向かいます。",
+   items:[
+    ["朝","ホテルで朝ごはん","7:00〜10:00",["naha"]],
+    ["午前",`<span class="tag">元気な人</span>${L("壺屋やちむん通り","https://tsuboya-yachimun.com/")}・国際通りへ`,"石畳に窯元が並ぶ焼き物の街。お気に入りのやちむんのラーメン丼を探しに",["tsuboya"]],
+    ["11:00","チェックアウト","荷物はホテルに預けておける"],
+    ["13時頃","空港へ","",["air"]],
+    ["14:40〜","帰りの便","高松組 ANA NH1622（14:40発→16:30着）／羽田組 JAL 988（15:10発→17:25着）"]
+   ]}
+];
+
+/* 移動の目安（予定の順番: [手段, 時間]）。年末年始の道路状況で変わります */
+const MOVES = {
+ d1:{1:["🚗","那覇空港から車で約25分"],2:["🚗","車で約40分"],3:["🚶","宿から歩いて約10分"],4:["🚶","歩いてすぐ"]},
+ d2:{1:["🚗","宿から車で約15分"],2:["🚗","車で約30分"],3:["🚗","車で約15分"],4:["🚗","車で約1時間"],5:["🚗","車で約1時間半"],6:["🚶","宿から歩いて"]},
+ d3:{1:["🚗","宿から車で約25分"],2:["🚗","港川から車で約40分（宿から直行なら約50分）"],4:["🚗","車で約20分（ひめゆりの塔へはさらに約10分）"],5:["🚗","車で約40分"],7:["🚶","ホテルから歩いて約5分"]},
+ d4:{1:["🚶","ホテルから歩いて約15分"],3:["🚝","ゆいレール（県庁前駅）で約12分、タクシーなら約15分"]}
+};
+const mv = (id,i) => { const m=(MOVES[id]||{})[i]; return m?`<div class="mv"><span aria-hidden="true">${m[0]}</span> ${m[1]}</div>`:""; };
+
+/* この日にできそうなこと（やりたいことのうち日程に入れていないもの） */
+const IDEAS = {
+ d1:["首里城の近くで沖縄そば","アメリカンビレッジでブルーシールアイス"],
+ d2:["道沿いの売店でパイナップルやマンゴーなど南国フルーツ","お年玉交換のときに、ののの誕生日のお祝いも"],
+ d3:["港川のoHacortéのフルーツタルトやippe coppeのパンをおみやげに","おきなわワールドのフルーツパーラーで南国フルーツ"],
+ d4:["国際通りでブルーシールアイスやお土産の食べ歩き"]
+};
+
+/* 日ごとの地図（略図）。座標はおおよそ */
+/* [地図の地名, 緯度, 経度, Googleマップ検索語, 地名を出す向き(1=右,-1=左)] */
+const P = {
+ air:["那覇空港",26.206,127.651,"那覇空港",-1],
+ shuri:["首里城",26.217,127.719,"首里城公園",1],
+ inn:["北谷の宿",26.3177,127.7596,"畳の宿 北谷美浜 by COLDIO",1],
+ ryukyu:["琉球村",26.409,127.736,"琉球村",-1],
+ chura:["美ら海水族館",26.694,127.878,"沖縄美ら海水族館",-1],
+ kadena:["道の駅かでな",26.367,127.775,"道の駅かでな",1],
+ minato:["港川",26.262,127.714,"港川ステイツサイドタウン",-1],
+ world:["おきなわワールド",26.141,127.749,"おきなわワールド",1],
+ heiwa:["平和祈念公園",26.096,127.726,"平和祈念公園",1],
+ himeyuri:["ひめゆりの塔",26.102,127.680,"ひめゆりの塔",-1],
+ naha:["那覇のホテル",26.2144,127.6786,"ザ ロイヤルパークホテル アイコニック 那覇",1],
+ tsuboya:["壺屋",26.212,127.692,"壺屋やちむん通り",1]
+};
+/* 日ごとの地名の向きの上書き（[向き, 上下のずれ]）。近い地点の地名が重ならないように */
+const LABEL_OV = { d4:{ naha:[-1,-1.1], tsuboya:[1,0.9] } };
+const ROUTES = {
+ d1:["air","shuri","inn"],
+ d2:["inn","kadena","ryukyu","chura","inn"],
+ d3:["inn","minato","world","heiwa","himeyuri","naha"],
+ d4:["naha","tsuboya","air"]
+};
+const ISLAND = [[127.665,26.078],[127.700,26.085],[127.745,26.098],[127.790,26.130],[127.830,26.165],[127.800,26.200],[127.790,26.250],[127.810,26.300],[127.860,26.330],[127.900,26.330],[127.830,26.390],[127.850,26.440],[127.930,26.460],[127.990,26.530],[128.080,26.620],[128.170,26.700],[128.250,26.800],[128.270,26.870],[128.230,26.870],[128.160,26.790],[128.080,26.700],[127.990,26.640],[127.940,26.700],[127.870,26.710],[127.870,26.660],[127.910,26.600],[127.880,26.520],[127.800,26.470],[127.730,26.450],[127.715,26.435],[127.740,26.380],[127.750,26.320],[127.720,26.270],[127.670,26.225],[127.640,26.200],[127.660,26.140]];
+const px = (lat,lng) => [(lng-127.6)*895.7, (26.9-lat)*1000];
+function dayMap(id){
+  const keys = ROUTES[id]; if(!keys) return "";
+  const pts = keys.map(k=>px(P[k][1],P[k][2]));
+  const xs=pts.map(p=>p[0]), ys=pts.map(p=>p[1]);
+  const ov = LABEL_OV[id]||{};
+  const side = keys.map(k=>(ov[k]||[P[k][4]])[0]);
+  // 地名の文字の大きさを画面幅の1/26に固定し、地名がはみ出さない幅を求める
+  const K=26, spanY=Math.max(...ys)-Math.min(...ys);
+  let lo=Infinity, hi=-Infinity, wl=Infinity, wr=-Infinity;   // wl/wr: 地名の長さ（文字幅=w/K）
+  keys.forEach((k,i)=>{ const n=P[k][0].length+1.6;
+    lo=Math.min(lo,xs[i]); hi=Math.max(hi,xs[i]);
+    wl=Math.min(wl, side[i]<0 ? xs[i]-n*1e-9 : xs[i]); });
+  let w=60;
+  for(let it=0; it<30; it++){
+    const fs=w/K; let x0=Infinity,x1=-Infinity;
+    keys.forEach((k,i)=>{ const L=(P[k][0].length+1.6)*fs; x0=Math.min(x0, side[i]<0?xs[i]-L:xs[i]-fs); x1=Math.max(x1, side[i]>0?xs[i]+L:xs[i]+fs); });
+    const need=Math.max(x1-x0+fs, (spanY+fs*3)*4/3);
+    if(need<=w*1.001){ wl=x0; wr=x1; break; } w=need; wl=x0; wr=x1;
+  }
+  const h=w*3/4, cyy=(Math.max(...ys)+Math.min(...ys))/2;
+  const vb=[(wl+wr)/2-w/2, cyy-h/2, w, h], fs=w/K, r=fs*0.75;
+  const land = "M"+ISLAND.map(([lng,lat])=>px(lat,lng).map(v=>v.toFixed(1)).join(",")).join("L")+"Z";
+  const seen = new Set(); let n=0;
+  const marks = keys.map((k,i)=>{
+    if(seen.has(k)) return ""; seen.add(k); n++;
+    const [x,y]=pts[i], right = side[i]>0;
+    return `<circle class="pt" cx="${x}" cy="${y}" r="${r}"/><text class="num" x="${x}" y="${y}" font-size="${fs}">${n}</text>
+      <text class="lbl" x="${right?x+r*1.4:x-r*1.4}" y="${y+((ov[k]||[])[1]||0)*fs}" dy="0.35em" font-size="${fs}" text-anchor="${right?"start":"end"}">${P[k][0]}</text>`;
+  }).join("");
+  const q = k => encodeURIComponent(P[k][3]+" 沖縄");
+  const way = keys.slice(1,-1).map(q).join("%7C");
+  const url = `https://www.google.com/maps/dir/?api=1&origin=${q(keys[0])}&destination=${q(keys[keys.length-1])}${way?"&waypoints="+way:""}&travelmode=driving`;
+  return `<div class="dmap">
+    <svg${w>150?"":' class="noland"'} viewBox="${vb.map(v=>v.toFixed(1)).join(" ")}" role="img" aria-label="この日の移動ルートの略図">
+      ${w>150 ? `<path class="land" d="${land}" vector-effect="non-scaling-stroke"/>` : ""}
+      <polyline class="rt" points="${pts.map(p=>p.join(",")).join(" ")}" vector-effect="non-scaling-stroke"/>
+      ${marks}
+    </svg>
+    <div class="foot"><span class="small">位置はおおよその略図です・<a href="https://www.google.com/maps/d/viewer?mid=1PspEaZF1Jl1iSSdUBKyN2ziv5Vl1aDw" target="_blank" rel="noopener">マイマップ</a></span><a class="btn" href="${url}" target="_blank" rel="noopener">Googleマップでルートを開く</a></div>
+  </div>`;
+}
+
+
+function pinNo(id,key){ const seen=[]; for(const k of ROUTES[id]) if(!seen.includes(k)) seen.push(k); return seen.indexOf(key)+1; }
+let curId="d1";
+const pins = ks => (ks||[]).map(k=>`<span class="pin" title="地図の${pinNo(curId,k)}">${pinNo(curId,k)}</span>`).join("");
+
+/* イラスト（ベクターシェルフ https://vectorshelf.com/ の無料素材） */
+const DAY_ART = {d1:"plane1",d2:"kagamimochi",d3:"car",d4:"bag"};
+const ITEM_ART = {d1:{3:"burger"},d2:{4:"coral"},d3:{1:"palm"},d4:{4:"plane2"}};
+const IDEA_ART = {d2:"pineapple",d4:"shell"};
+const art = (n,c) => n?`<img class="${c}" src="img/${n}.png" alt="" loading="lazy">`:"";
+
+/* この日にできそうなこと */
+const dayIdeas = d => IDEAS[d.id] ? `<div class="ideas">${art(IDEA_ART[d.id],"iart")}<h3>この日にできそうなこと</h3><ul>${IDEAS[d.id].map(t=>`<li>${t}</li>`).join("")}</ul></div>` : "";
+
+/* 日程 */
+const chips = document.getElementById("daychips"), dayEl = document.getElementById("day");
+function renderDay(i){
+  const d = DAYS[i]; curId = d.id;
+  [...chips.children].forEach((c,j)=>c.setAttribute("aria-pressed", j===i));
+  dayEl.style.setProperty("--dc", d.color);
+  dayEl.innerHTML = `
+   <div class="card dcard" style="--dc:${d.color}">
+     <div class="dart polaroid">${art(DAY_ART[d.id],"")}</div>
+     <div class="dayhead"><span class="dno">DAY${i+1}</span><h2>${d.title}</h2><div class="date">${d.label}（${d.dow}）</div></div>
+     <p class="lead" style="margin-top:8px">${d.lead}</p>
+     <ul class="tl">${d.items.map(([t,w,n,ks],i)=>`<li><div class="t">${t}</div><div class="b">${mv(d.id,i)}${art((ITEM_ART[d.id]||{})[i],"iart")}<div class="w">${pins(ks)}${w}</div>${n?`<div class="n">${n}</div>`:""}</div></li>`).join("")}</ul>
+     ${dayMap(d.id)}
+     ${dayIdeas(d)}
+   </div>`;
+  try{ localStorage.setItem("oki-day", i) }catch(e){}
+}
+DAYS.forEach((d,i)=>{
+  const b=document.createElement("button");
+  b.className="chip"; b.style.setProperty("--dc",d.color);
+  b.innerHTML=`<b>DAY${i+1}</b>${d.label}（${d.dow}）`; b.onclick=()=>renderDay(i); chips.appendChild(b);
+});
+
+/* 今日の日付で初期表示 */
+const today = new Date(); const ymd = today.toLocaleDateString("sv-SE",{timeZone:"Asia/Tokyo"});
+let start = DAYS.findIndex(d=>d.date===ymd);
+if(start<0){ try{ const s=+localStorage.getItem("oki-day"); if(s>=0&&s<4) start=s }catch(e){} }
+renderDay(start<0?0:start);
+const diff = Math.ceil((new Date("2026-12-31T00:00:00+09:00") - today)/86400000);
+document.getElementById("count").textContent =
+  diff>0 ? `出発まで あと${diff}日` : (start>=0 ? `旅行中・${DAYS[start].label}` : "おかえりなさい");
+
+
+
+
+/* タブ */
+const tabs=[...document.querySelectorAll(".tab")];
+function show(v){
+  tabs.forEach(t=>{ if(t.dataset.v===v) t.setAttribute("aria-current","page"); else t.removeAttribute("aria-current") });
+  document.querySelectorAll("main > section.view").forEach(s=>s.hidden = s.id!=="v-"+v);
+  window.scrollTo(0,0);
+}
+tabs.forEach(t=>t.onclick=()=>{ show(t.dataset.v); if(location.hash!=="#"+t.dataset.v) location.hash=t.dataset.v });
+const fromHash=()=>{ const h=location.hash.slice(1); show(["plan","book","album"].includes(h)?h:"plan") };
+addEventListener("hashchange",fromHash); fromHash();
+
+/* ===== アルバム（Googleフォトの共有アルバム） ===== */
+const ALBUM_URL = "";
+(()=>{ const a=document.getElementById("album-link");
+  if(ALBUM_URL){ a.href=ALBUM_URL } else { a.hidden=true; document.getElementById("album-wait").hidden=false } })();
+</script>
+
+</body>
+</html>
