@@ -141,6 +141,7 @@ a{color:var(--sea);font-weight:700;text-decoration-thickness:1px;text-underline-
 nav.tabs{position:fixed;left:0;right:0;bottom:0;background:color-mix(in srgb,var(--card) 94%,transparent);backdrop-filter:blur(6px);border-top:1.5px dotted var(--line2);padding-bottom:env(safe-area-inset-bottom,0px);padding-left:env(safe-area-inset-left,0px);padding-right:env(safe-area-inset-right,0px);z-index:20}
 nav.tabs .in{max-width:640px;margin:0 auto;display:grid;grid-template-columns:repeat(2,1fr)}
 
+[hidden]{display:none!important}
 .note{font-size:13.5px;color:var(--sub);margin:0}
 
 /* 出発までにやること */
@@ -243,7 +244,7 @@ nav.tabs .in{max-width:640px;margin:0 auto;display:grid;grid-template-columns:re
       </div>
     </div>
 
-    <div class="card"><h3>📝 その他</h3>
+    <div class="card todo-sec" hidden><h3>📝 その他</h3>
       <div class="rows" id="booked"></div>
     </div>
 
@@ -254,8 +255,8 @@ nav.tabs .in{max-width:640px;margin:0 auto;display:grid;grid-template-columns:re
       </div>
     </div>
 
-    <h2 style="margin-top:28px">To Do<small>出発までにやること</small></h2>
-    <div class="card">
+    <h2 class="todo-sec" hidden style="margin-top:28px">To Do<small>出発までにやること</small></h2>
+    <div class="card todo-sec" hidden>
       <div class="sync" id="sync">読み込み中…</div>
       <div class="progress" aria-hidden="true"><i id="todo-bar" style="width:0"></i></div>
       <p class="small" id="todo-count"></p>
@@ -575,10 +576,8 @@ async function initTodos(){
   tdb = await useCap("db");
   const tuser = await useCap("user");
   try{ canWrite = !!(tdb && tuser && (await tuser.can("data.write"))) }catch(e){ canWrite = false }
-  if(!tdb){
-    todoSync.textContent = "見るだけのページです（チェックや追加は、編集者がClaudeのページで行います）";
-    renderTodos(); return;
-  }
+  if(!tdb){ renderTodos(); return; }
+  document.querySelectorAll(".todo-sec").forEach(e=>e.hidden=false);
   todoSync.className = "sync on";
   todoSync.textContent = canWrite ? "編集者として、家族と共有しています" : "見るだけ（編集は編集者のみ）";
   tdb.collection("todos").onSnapshot(s=>{
