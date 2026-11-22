@@ -168,6 +168,14 @@ nav.tabs .in{max-width:640px;margin:0 auto;display:grid;grid-template-columns:re
 .memo h3 small{font-weight:500;color:var(--sub);font-size:11.5px}
 .memo textarea{width:100%;min-height:72px;resize:vertical;font:inherit;font-size:14.5px;color:var(--ink);background:var(--bg);border:1.5px dashed var(--line2);border-radius:12px;padding:10px 12px;line-height:1.6}
 .memo .saved{font-size:11.5px;color:var(--sub);height:1em;margin-top:2px;text-align:right}
+.todo .rowacts{grid-column:2;display:flex;gap:16px;justify-content:flex-end}
+.todo .rowacts button{background:none;border:0;color:var(--sea);font:inherit;font-size:12.5px;font-weight:700;cursor:pointer;padding:2px 0}
+.todo .rowacts .del{color:var(--red)}
+.todo .ed{grid-column:2;display:flex;flex-direction:column;gap:8px}
+.todo .ed input,.todo .ed textarea{font:inherit;font-size:15px;color:var(--ink);background:var(--bg);border:1.5px solid var(--line);border-radius:10px;padding:8px 10px;width:100%;min-width:0}
+.todo .ed textarea{min-height:64px;resize:vertical;line-height:1.5}
+.todo .ed .acts{display:flex;justify-content:flex-end;gap:14px;align-items:center}
+.linkbtn{background:none;border:0;color:var(--sea);font:inherit;font-size:13.5px;font-weight:700;cursor:pointer;padding:2px 0}
 .todo .del{grid-column:2;justify-self:end;background:none;border:0;color:var(--red);font:inherit;font-size:12.5px;font-weight:700;cursor:pointer;padding:2px 0}
 .todo input:disabled,.dt input:disabled{opacity:.7}
 .addtodo{display:flex;gap:8px;margin-top:12px}
@@ -517,9 +525,10 @@ const useCap = async n => { try{ return (await window.claude?.use?.(n)) ?? null 
 function esc(s){return String(s??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]))}
 
 function allTodos(){
+  const base = TODOS.map(t=>{ const o = todoDocs[t.id] || {}; return {...t, title: o.title || t.title, note: o.note !== undefined ? o.note : t.note} });
   const customs = Object.entries(todoDocs).filter(([,v])=>v.custom)
-    .map(([k,v])=>({id:k, custom:true, title:v.title||"", note:"", when:"追加"}));
-  return TODOS.concat(customs);
+    .map(([k,v])=>({id:k, custom:true, title:v.title||"", note:v.note||"", when:"追加"}));
+  return base.concat(customs);
 }
 async function writeTodo(id, val){
   if(!canWrite) return;
@@ -527,17 +536,27 @@ async function writeTodo(id, val){
   catch(e){ todoSync.textContent = "保存できませんでした。編集者として入っているか確認してください" }
 }
 
+let editingId = null;
 function renderTodos(){
+  const prevT = todoEl.querySelector("[data-etitle]"), prevN = todoEl.querySelector("[data-enote]");
+  const keepT = prevT && prevT.dataset.etitle === editingId ? prevT.value : null;
+  const keepN = prevN && prevN.dataset.enote === editingId ? prevN.value : null;
   const focusKey = document.activeElement?.dataset?.detail, focusVal = document.activeElement?.value;
   const list = allTodos(), dis = canWrite ? "" : "disabled";
   todoEl.innerHTML = list.map(t=>{
     const st = todoDocs[t.id] || {};
+    const editing = canWrite && editingId === t.id;
     return `<li class="${st.done?"done":""}">
       <input type="checkbox" id="td-${t.id}" data-todo="${t.id}" ${st.done?"checked":""} ${dis}>
-      <label class="tt" for="td-${t.id}">${esc(t.title)}<span class="when">${t.when}</span></label>
-      ${t.note ? `<div class="tn">${esc(t.note)}</div>` : ""}
-      ${st.done ? `<div class="dt"><input type="text" data-detail="${t.id}" value="${esc(st.detail)}" placeholder="${t.kind==="book" ? "予約の内容（日時・店名・人数など）" : "決まったこと・メモ"}" maxlength="140" ${dis}></div>` : ""}
-      ${t.custom && canWrite ? `<button class="del" type="button" data-del="${t.id}">削除</button>` : ""}
+      ${editing ? `<div class="ed">
+          <input type="text" data-etitle="${t.id}" value="${esc(keepT ?? t.title)}" maxlength="60" aria-label="やることの名前">
+          <textarea data-enote="${t.id}" maxlength="300" placeholder="メモ（任意）" aria-label="メモ">${esc(keepN ?? t.note)}</textarea>
+          <div class="acts"><button class="linkbtn" type="button" data-ecancel>やめる</button><button class="btn" type="button" data-esave="${t.id}">保存</button></div>
+        </div>`
+      : `<label class="tt" for="td-${t.id}">${esc(t.title)}<span class="when">${t.when}</span></label>
+        ${t.note ? `<div class="tn">${esc(t.note)}</div>` : ""}`}
+      ${st.done && !editing ? `<div class="dt"><input type="text" data-detail="${t.id}" value="${esc(st.detail)}" placeholder="${t.kind==="book" ? "予約の内容（日時・店名・人数など）" : "決まったこと・メモ"}" maxlength="140" ${dis}></div>` : ""}
+      ${canWrite && !editing ? `<div class="rowacts"><button type="button" data-edit="${t.id}">編集</button>${t.custom ? `<button class="del" type="button" data-del="${t.id}">削除</button>` : ""}</div>` : ""}
     </li>`;
   }).join("");
   if(focusKey){ const f = todoEl.querySelector(`[data-detail="${focusKey}"]`); if(f){ f.value = focusVal; f.focus(); f.setSelectionRange(f.value.length, f.value.length) } }
@@ -560,9 +579,20 @@ todoEl.addEventListener("change", e=>{
   else if(t.dataset.detail !== undefined) writeTodo(t.dataset.detail, {detail:t.value.trim()});
 });
 todoEl.addEventListener("click", async e=>{
-  const b = e.target.closest("[data-del]"); if(!b || !canWrite) return;
-  if(b.dataset.confirm !== "1"){ b.dataset.confirm = "1"; b.textContent = "本当に削除"; setTimeout(()=>{ b.dataset.confirm = ""; b.textContent = "削除" }, 4000); return }
-  try{ await tdb.doc("todos/"+b.dataset.del).delete() }catch(err){ todoSync.textContent = "削除できませんでした" }
+  if(!canWrite) return;
+  const b = e.target.closest("button"); if(!b) return;
+  if(b.dataset.edit !== undefined && b.hasAttribute("data-edit")){ editingId = b.dataset.edit; renderTodos(); return }
+  if(b.hasAttribute("data-ecancel")){ editingId = null; renderTodos(); return }
+  if(b.dataset.esave){
+    const li = b.closest("li"), title = li.querySelector("[data-etitle]").value.trim(), note = li.querySelector("[data-enote]").value.trim();
+    if(!title) return;
+    editingId = null; renderTodos();
+    await writeTodo(b.dataset.esave, {title, note }); return;
+  }
+  if(b.dataset.del){
+    if(b.dataset.confirm !== "1"){ b.dataset.confirm = "1"; b.textContent = "本当に削除"; setTimeout(()=>{ b.dataset.confirm = ""; b.textContent = "削除" }, 4000); return }
+    try{ await tdb.doc("todos/"+b.dataset.del).delete() }catch(err){ todoSync.textContent = "削除できませんでした" }
+  }
 });
 document.getElementById("addtodo").addEventListener("submit", async e=>{
   e.preventDefault();
