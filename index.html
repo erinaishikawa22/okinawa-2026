@@ -142,6 +142,31 @@ nav.tabs{position:fixed;left:0;right:0;bottom:0;background:color-mix(in srgb,var
 nav.tabs .in{max-width:640px;margin:0 auto;display:grid;grid-template-columns:repeat(2,1fr)}
 
 .note{font-size:13.5px;color:var(--sub);margin:0}
+
+/* 出発までにやること */
+.todo{list-style:none;margin:0;padding:0}
+.todo li{display:grid;grid-template-columns:30px 1fr;gap:4px 8px;padding:12px 0;border-bottom:1.5px dotted var(--line2)}
+.todo li:last-child{border-bottom:0}
+.todo input[type=checkbox]{width:22px;height:22px;margin:1px 0 0;accent-color:var(--deep);cursor:pointer}
+.todo .tt{font-weight:700;cursor:pointer}
+.todo .tn{grid-column:2;font-size:13px;color:var(--sub)}
+.todo .dt{grid-column:2;display:flex;gap:6px;align-items:center}
+.todo .dt input{flex:1;min-width:0;font:inherit;font-size:14px;color:var(--ink);background:var(--bg);border:1.5px solid var(--line);border-radius:10px;padding:6px 10px}
+.todo li.done .tt{text-decoration:line-through;text-decoration-color:var(--blue);color:var(--sub)}
+.todo li.done .tn{display:none}
+.todo .when{font-size:11.5px;font-weight:700;color:var(--deep);border:1.5px solid var(--line2);border-radius:999px;padding:0 7px;margin-left:6px;white-space:nowrap;vertical-align:1px}
+.sync{display:flex;align-items:center;gap:6px;font-size:12.5px;color:var(--sub);margin:-2px 0 4px}
+.sync::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--sun)}
+.sync.on::before{background:#4caf7a}
+.progress{height:6px;border-radius:999px;background:var(--pale);overflow:hidden;margin:4px 0 2px}
+.progress i{display:block;height:100%;background:var(--deep);border-radius:999px;transition:width .3s}
+
+/* 自分だけのメモ */
+.memo{margin-top:18px}
+.memo h3{margin:0 0 6px;font-size:14px;display:flex;align-items:center;gap:6px}
+.memo h3 small{font-weight:500;color:var(--sub);font-size:11.5px}
+.memo textarea{width:100%;min-height:72px;resize:vertical;font:inherit;font-size:14.5px;color:var(--ink);background:var(--bg);border:1.5px dashed var(--line2);border-radius:12px;padding:10px 12px;line-height:1.6}
+.memo .saved{font-size:11.5px;color:var(--sub);height:1em;margin-top:2px;text-align:right}
 .tab{background:none;border:0;font:inherit;color:var(--sub);padding:8px 0 10px;display:flex;flex-direction:column;align-items:center;gap:2px;font-size:11.5px;cursor:pointer}
 .tab svg{width:24px;height:24px;stroke:currentColor;fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
 .tab[aria-current="page"]{color:var(--deep);font-weight:700}
@@ -185,9 +210,6 @@ nav.tabs .in{max-width:640px;margin:0 auto;display:grid;grid-template-columns:re
   <!-- 予約 -->
   <section class="view" id="v-book" hidden>
     <h2>Booking<small>予約まとめ</small></h2>
-    <div class="alert"><b>要対応：1/2 那覇のホテルが重複予約</b><br>
-      エグゼクティブフロアに泊まる方針です。ただし、エリナが予約したエグゼクティブ2室は<b>3名＋2名＝5人分で、1人足りません</b>。エグゼクティブをもう1室増やすか、2名の部屋を3名に変えられるかを確認してください。決まったら、ゆうかが予約したスーペリアツイン3部屋をキャンセルします。キャンセル料がいつからかかるかも先に確認してください。</div>
-
     <div class="card"><h3>✈ 行き 12/31</h3>
       <div class="rows">
         <div class="row"><div class="k">高松→那覇</div><div class="v"><b>ANA NH1621</b> 4人 <span class="status ok">予約済み</span><div class="small">高松 11:40 発 → 那覇 13:50 着</div></div></div>
@@ -201,7 +223,7 @@ nav.tabs .in{max-width:640px;margin:0 auto;display:grid;grid-template-columns:re
           <div class="small">北谷町美浜2-5-18・<a href="https://www.google.com/maps/search/?api=1&query=%E7%95%B3%E3%81%AE%E5%AE%BF%20%E5%8C%97%E8%B0%B7%E7%BE%8E%E6%B5%9C" target="_blank" rel="noopener">地図</a><br>
           チェックイン 15:00〜22:00（無人。タブレットでセルフチェックイン。コードは前日9時に届く）／チェックアウト 12:00<br>
           駐車場は「1部屋1台」。2台目は近くのコインパーキングに止める</div></div></div>
-        <div class="row"><div class="k">1/2</div><div class="v"><a href="https://www.royalparkhotels.co.jp/ic/naha/" target="_blank" rel="noopener">ザ ロイヤルパークホテル アイコニック 那覇</a> <span class="status ng">重複あり</span>
+        <div class="row"><div class="k">1/2</div><div class="v"><a href="https://www.royalparkhotels.co.jp/ic/naha/" target="_blank" rel="noopener">ザ ロイヤルパークホテル アイコニック 那覇</a> <span class="status ng" id="hotel-status">重複あり</span>
           <div class="small">那覇市久茂地1-11-1 琉球銀行本店ビル7F・<a href="https://www.google.com/maps/search/?api=1&query=%E3%82%B6%20%E3%83%AD%E3%82%A4%E3%83%A4%E3%83%AB%E3%83%91%E3%83%BC%E3%82%AF%E3%83%9B%E3%83%86%E3%83%AB%20%E3%82%A2%E3%82%A4%E3%82%B3%E3%83%8B%E3%83%83%E3%82%AF%20%E9%82%A3%E8%A6%87" target="_blank" rel="noopener">地図</a><br>
           チェックイン 15:00／チェックアウト 11:00<br>
           エグゼクティブラウンジ（7F）：11:00〜17:00 軽食、17:00〜21:00 カクテルタイム。朝食 7:00〜10:00<br>
@@ -217,13 +239,29 @@ nav.tabs .in{max-width:640px;margin:0 auto;display:grid;grid-template-columns:re
       </div>
     </div>
 
+    <div class="card"><h3>📝 その他</h3>
+      <div class="rows" id="booked"></div>
+    </div>
+
     <div class="card"><h3>✈ 帰り 1/3</h3>
       <div class="rows">
         <div class="row"><div class="k">那覇→高松</div><div class="v"><b>ANA NH1622</b> 3人 <span class="status ok">予約済み</span><div class="small">那覇 14:40 発 → 高松 16:30 着</div></div></div>
         <div class="row"><div class="k">那覇→羽田</div><div class="v"><b>JAL 988</b> 3人 <span class="status ok">予約済み</span><div class="small">那覇 15:10 発 → 羽田 17:25 着</div></div></div>
       </div>
     </div>
-    <p class="small">行きは高松組4人・羽田組2人、帰りは3人ずつに分かれます。行きと帰りで1人、行き先が変わる人がいます。</p>
+
+    <h2 style="margin-top:28px">To Do<small>出発までにやること</small></h2>
+    <div class="card">
+      <div class="sync" id="sync">この端末に保存中</div>
+      <div class="progress" aria-hidden="true"><i id="todo-bar" style="width:0"></i></div>
+      <p class="small" id="todo-count"></p>
+      <ul class="todo" id="todo"></ul>
+    </div>
+
+    <div class="card memo"><h3>自分だけのメモ <small>この端末にだけ保存されます</small></h3>
+      <textarea data-memo="all" aria-label="自分だけのメモ" placeholder="持ち物、聞いておきたいこと など"></textarea>
+      <div class="saved" data-saved="all"></div>
+    </div>
   </section>
 
 
@@ -399,7 +437,11 @@ function renderDay(i){
      <ul class="tl">${d.items.map(([t,w,n,ks],i)=>`<li><div class="t">${t}</div><div class="b">${mv(d.id,i)}${art((ITEM_ART[d.id]||{})[i],"iart")}<div class="w">${pins(ks)}${w}</div>${n?`<div class="n">${n}</div>`:""}</div></li>`).join("")}</ul>
      ${dayMap(d.id)}
      ${dayIdeas(d)}
+     <div class="memo"><h3>この日のメモ <small>自分だけ・この端末にだけ保存</small></h3>
+       <textarea data-memo="${d.id}" aria-label="${d.label}のメモ" placeholder="集合場所、買うもの など"></textarea>
+       <div class="saved" data-saved="${d.id}"></div></div>
    </div>`;
+  fillMemos(dayEl);
   try{ localStorage.setItem("oki-day", i) }catch(e){}
 }
 DAYS.forEach((d,i)=>{
@@ -419,6 +461,114 @@ document.getElementById("count").textContent =
 
 
 
+
+/* ===== 自分だけのメモ（この端末の localStorage） ===== */
+function fillMemos(root){
+  root.querySelectorAll("textarea[data-memo]").forEach(t=>{
+    try{ t.value = localStorage.getItem("oki-memo-"+t.dataset.memo) || "" }catch(e){}
+    let timer;
+    t.oninput=()=>{ clearTimeout(timer); timer=setTimeout(()=>{
+      try{ localStorage.setItem("oki-memo-"+t.dataset.memo, t.value);
+           const m=root.querySelector(`[data-saved="${t.dataset.memo}"]`); if(m){ m.textContent="保存しました"; setTimeout(()=>m.textContent="",1500) } }catch(e){}
+    },400) };
+  });
+}
+fillMemos(document.getElementById("v-book"));
+
+/* ===== 出発までにやること ===== */
+/* kind: book=予約すると「その他」に予約済みとして出る / decide=決めること・確認すること
+   bk: 「その他」に出すときの名前 */
+const TODOS = [
+ {id:"hotel", kind:"decide", when:"早めに", title:"那覇のホテル（1/2）の重複予約を整理する",
+  note:"エグゼクティブフロアに泊まる方針。エリナが予約したエグゼクティブ2室は3名＋2名＝5人分で1人足りない。もう1室増やすか、2名の部屋を3名に変えられるか確認 → 決まったら、ゆうかが予約したスーペリアツイン3部屋をキャンセル（キャンセル料がいつからかかるか先に確認）"},
+ {id:"car", kind:"decide", when:"早めに", title:"レンタカーの台数・受け取り・返却を決める",
+  note:"何台借りるか／どこで受け取るか（12/31 那覇空港の予定）／いつ・どこで返すか（1/2 那覇市内の予定。返却する店と乗り捨ての可否を日産レンタカーに確認）／運転する人"},
+ {id:"shuri", kind:"book", when:"12/31", bk:"首里城 入場券", title:"首里城の入場券を買う",
+  note:"大晦日の開園時間と、Webで入場券を先に買えるかを確認"},
+ {id:"din1231", kind:"book", when:"12/31", bk:"12/31 晩ご飯", title:"大晦日の晩ご飯の店を予約する",
+  note:"北谷で6人。大晦日は早めに埋まりやすい"},
+ {id:"bf0101", kind:"book", when:"1/1", bk:"1/1 お正月の朝ごはん", title:"お正月の朝ごはんを用意する",
+  note:"宿に朝食はない。オードブルを予約するか、12/31のうちにイオン北谷で買う"},
+ {id:"bf0102", kind:"book", when:"1/2", bk:"1/2 朝ごはん", title:"1/2の朝ごはんを用意する",
+  note:"1/1の夜までにイオン北谷などで買っておく"},
+ {id:"din0101", kind:"book", when:"1/1", bk:"1/1 晩ご飯", title:"元日の晩ご飯の店を予約する",
+  note:"豚しゃぶ・お肉の店が候補。元日は休みの店も多いので早めに"},
+ {id:"chura", kind:"book", when:"1/1", bk:"美ら海水族館 チケット", title:"美ら海水族館のチケットを先に買う",
+  note:"元日は混むので、Webで買っておくと窓口に並ばずに入れる"},
+ {id:"din0102", kind:"book", when:"1/2", bk:"1/2 晩ご飯", title:"1/2の晩ご飯をレストランで食べるなら予約する",
+  note:"ホテルのお正月ディナーブッフェ（17:30〜）や国際通りの店など"},
+ {id:"cake", kind:"book", when:"誕生日会", bk:"ののかの誕生日ケーキ", title:"ののかの誕生日会の日を決めて、ケーキを予約する",
+  note:"12/31の夜か1/1の夜。日にちが決まったら日程にも入れる"},
+ {id:"airport", kind:"book", when:"1/3", bk:"1/3 ホテル→空港", title:"1/3 ホテルから空港への行き方を確認する（必要なら予約）",
+  note:"ゆいレールなら県庁前駅から那覇空港駅まで約12分。荷物が多ければタクシー。高松便14:40発・羽田便15:10発"}
+];
+
+/* 保存先：FIREBASE を設定すると家族と共有、なければこの端末だけ */
+const FIREBASE = null;
+const TRIP_DOC = ["trips","okinawa2027"];
+let todoState = {};
+try{ todoState = JSON.parse(localStorage.getItem("oki-todos")||"{}") }catch(e){}
+let remote = null;   // {save(id, val)}
+
+function saveTodo(id, val){
+  todoState[id] = {...(todoState[id]||{}), ...val, at:new Date().toISOString()};
+  try{ localStorage.setItem("oki-todos", JSON.stringify(todoState)) }catch(e){}
+  if(remote) remote.save(id, todoState[id]);
+  renderTodos();
+}
+
+const todoEl=document.getElementById("todo");
+function renderTodos(){
+  const focusId = document.activeElement?.dataset?.detail, focusVal = document.activeElement?.value;
+  todoEl.innerHTML = TODOS.map(t=>{
+    const st = todoState[t.id]||{};
+    return `<li class="${st.done?"done":""}">
+      <input type="checkbox" id="td-${t.id}" data-todo="${t.id}" ${st.done?"checked":""}>
+      <label class="tt" for="td-${t.id}">${t.title}<span class="when">${t.when}</span></label>
+      <div class="tn">${t.note}</div>
+      ${st.done ? `<div class="dt"><input type="text" data-detail="${t.id}" value="${esc(st.detail)}" placeholder="${t.kind==="book"?"予約の内容（日時・店名・人数など）":"決まったこと"}" maxlength="140"></div>`:""}
+    </li>`}).join("");
+  const n = TODOS.filter(t=>todoState[t.id]?.done).length;
+  document.getElementById("todo-count").textContent = `${TODOS.length}件中 ${n}件 完了`;
+  document.getElementById("todo-bar").style.width = (n/TODOS.length*100)+"%";
+  if(focusId){ const f=todoEl.querySelector(`[data-detail="${focusId}"]`); if(f){ f.value=focusVal; f.focus(); f.setSelectionRange(f.value.length,f.value.length) } }
+
+  /* 予約済みになったものを「その他」に */
+  const bk = TODOS.filter(t=>t.kind==="book" && todoState[t.id]?.done);
+  document.getElementById("booked").innerHTML = bk.length
+    ? bk.map(t=>`<div class="row"><div class="k">${t.when}</div><div class="v"><b>${t.bk}</b> <span class="status ok">予約済み</span>${todoState[t.id].detail?`<div class="small">${esc(todoState[t.id].detail)}</div>`:""}</div></div>`).join("")
+    : `<p class="small" style="margin:0">To Do で予約できたものにチェックを入れると、ここに並びます。</p>`;
+  const hs=document.getElementById("hotel-status");
+  if(todoState.hotel?.done){ hs.className="status ok"; hs.textContent="整理済み" } else { hs.className="status ng"; hs.textContent="重複あり" }
+}
+function esc(s){return String(s??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]))}
+
+todoEl.addEventListener("change",e=>{
+  const t=e.target;
+  if(t.dataset.todo) saveTodo(t.dataset.todo,{done:t.checked});
+  else if(t.dataset.detail!==undefined) saveTodo(t.dataset.detail,{detail:t.value.trim()});
+});
+renderTodos();
+
+/* 家族と共有（Firebase Firestore） */
+(async ()=>{
+  const sync=document.getElementById("sync");
+  if(!FIREBASE){ sync.textContent="この端末にだけ保存中（家族との共有はまだ設定していません）"; return }
+  try{
+    const V="10.12.2";
+    const {initializeApp} = await import(`https://www.gstatic.com/firebasejs/${V}/firebase-app.js`);
+    const {getFirestore, doc, onSnapshot, setDoc} = await import(`https://www.gstatic.com/firebasejs/${V}/firebase-firestore.js`);
+    const ref = doc(getFirestore(initializeApp(FIREBASE)), ...TRIP_DOC);
+    remote = { save:(id,val)=>setDoc(ref,{todos:{[id]:val}},{merge:true}).catch(()=>{ sync.className="sync"; sync.textContent="共有できませんでした（電波を確認してください）" }) };
+    onSnapshot(ref, snap=>{
+      const shared = snap.data()?.todos || {};
+      todoState = shared;
+      try{ localStorage.setItem("oki-todos", JSON.stringify(todoState)) }catch(e){}
+      sync.className="sync on"; sync.textContent="家族と共有中（チェックはみんなの画面に反映されます）";
+      renderTodos();
+    }, ()=>{ sync.textContent="共有につながりません。この端末にだけ保存中" });
+  }catch(e){ sync.textContent="この端末にだけ保存中（共有につながりません）" }
+})();
 
 /* タブ */
 const tabs=[...document.querySelectorAll(".tab")];
